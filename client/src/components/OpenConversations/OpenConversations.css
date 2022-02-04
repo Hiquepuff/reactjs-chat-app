@@ -1,0 +1,19 @@
+.message-container {
+    width: clamp(15rem, 70%, 25rem);
+}
+
+*, *::after, *::before {
+    max-width: 100vw !important;
+}
+
+.arrow {display: none !important;}
+
+.sidebar-modal {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+}
+
+@media (max-width: 750px) {
+    .arrow {display: block !important;}
+}

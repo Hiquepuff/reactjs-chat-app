@@ -9,8 +9,8 @@ export default function useLocalStorage(key, initialValue) {
         // Get the user id from the localStorage
         const jsonValue = localStorage.getItem(prefixedKey)
 
-        // Convert the json string to real json
-        if (jsonValue != null) return JSON.parse(jsonValue)
+        // Convert the json string to real json    
+        if (jsonValue !== null) return JSON.parse(jsonValue)
         
         if (typeof initialValue === 'function') {
             return initialValue()

@@ -9,17 +9,19 @@ import './rootVariables.css'
 const CONVERSATIONS = 'conversations'
 const CONTACTS = 'contacts'
 
-export default function Sidebar({id}) {
+export default function SidebarModal() {
     const [ activeKey, setActiveKey ] = useState(CONVERSATIONS)
     const [modalOpen, setModalOpen] = useState()
     const conversationOpen = activeKey === CONVERSATIONS
+    
+    console.log('This is a message from the sidebar modal')
 
     function closeModal() {
         setModalOpen(false)
     }
 
     return (
-        <div style={{ minWidth: '35vw', borderRight: '1px solid #ccc'}} className='d-flex flex-column'>
+        <div className='d-flex flex-column'>
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant='tabs' className='d-flex justify-content-center' style={{height: '3rem'}}>
                     <Nav.Item>
@@ -39,7 +41,7 @@ export default function Sidebar({id}) {
                     </Tab.Pane>
                 </Tab.Content>
                 <div className='p-2 border-top border-right small' style={{'borderRight': '1px solid #ccc'}}>
-                    Your Id: <span className='text-muted'>{id}</span>
+                    Your Id: <span className='text-muted'>{localStorage.getItem('chat-app-id').replace(/"/gi, '')}</span>
                 </div>
                 <Button style={{height: '3rem'}} className='m-2 bg-grey-light border-0' onClick={() => setModalOpen(true)}>
                     New { conversationOpen ? 'Conversations' : 'Contacts'}
@@ -55,4 +57,3 @@ export default function Sidebar({id}) {
         </div>
     )
 } 
-
