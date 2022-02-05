@@ -7,29 +7,38 @@ import SidebarModal from '../SidebarModal'
 import '../rootVariables.css'
 import './OpenConversations.css'
 
-export default function OpenConversation({id}) {
+export default function OpenConversation() {
     const [ modalOpen, setModalOpen] = useState()
     const [text, setText] = useState('')
     const setRef = useCallback(node => {
-        if (node) {
-            node.scrollIntoView({smooth: true})
-        }
+        if (node) node.scrollIntoView({smooth: true})
     }, [])
     const { sendMessage, selectedConversation } = useConversations()
-    
+
     function handleSubmit(e) {
-        e.preventDefault()
- 
-        sendMessage(
-            selectedConversation.recipients.map(r => r.id),
-            text
-        )
+        if (e) e.preventDefault()
+
+        // Send message if there is at least one character
+        if (text.match(/^\s*\S+/)) {
+            sendMessage(
+                selectedConversation.recipients.map(r => r.id),
+                text.trim()
+            )
+        }
         setText('')
     }
 
-    function closeModal() {
-        setModalOpen(false)
-    }
+    function closeModal() { setModalOpen(false) }
+
+    // Send message when enter key is pressed
+    setTimeout(() => {
+        const textarea = document.querySelector('.form-control')
+        const sendButton = document.querySelector('#send-btn')
+        
+        textarea.addEventListener('keydown', e => {
+            if (e.key === 'Enter') sendButton.click()
+        })
+    }, 100)
 
     return (
         <>
@@ -44,7 +53,7 @@ export default function OpenConversation({id}) {
                     <FontAwesomeIcon icon={faArrowLeft}/>
                 </button>
                 
-                <div className='top-chat-bar' style={{whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: '85%'}}>
+                <div className='top-chat-bar' style={{whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: '10px'}}>
                     {selectedConversation.recipients.map(r => r.name).join(', ')}
                 </div>
 
@@ -95,7 +104,7 @@ export default function OpenConversation({id}) {
                             value={text}
                             style={{height: '3rem', resize: 'none'}}
                         />
-                        <Button style={{'border': 'none', 'backgroundColor': '#4f5b62'}} type='submit'>
+                        <Button style={{'border': 'none', 'backgroundColor': '#4f5b62'}} type='submit' id='send-btn'>
                             <FontAwesomeIcon icon={faPaperPlane} />
                         </Button>
                     </InputGroup>
@@ -105,7 +114,7 @@ export default function OpenConversation({id}) {
                          
         </div>
         
-        <Modal className='sidebar-modal' style={{width: '90vw'}} show={modalOpen} onHide={closeModal}>
+        <Modal className='sidebar-modal' style={{position: 'fixed', top: '3rem'}} show={modalOpen} onHide={closeModal}>
             <SidebarModal closeModal={closeModal}/>
         </Modal>  
         </>

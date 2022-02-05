@@ -17,3 +17,10 @@
 @media (max-width: 750px) {
     .arrow {display: block !important;}
 }
+
+.top-chat-bar {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70% !important;
+}

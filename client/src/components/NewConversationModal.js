@@ -10,7 +10,9 @@ export default function NewConversationModal({closeModal}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    createConversation(selectedContactIds)
+    if (selectedContactIds.length > 0) createConversation(selectedContactIds)
+    else (alert('Add a contact before create a conversation'))
+    
     closeModal()
   }
 
@@ -43,7 +45,7 @@ export default function NewConversationModal({closeModal}) {
               </Form.Group>
             ))}
               
-            <Button type='submit'>Create</Button>
+            <Button className='mt-3 btn-secondary' type='submit'>Create</Button>
           </Form>
       </Modal.Body>
     </>

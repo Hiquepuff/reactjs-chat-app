@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar'
 import OpenConversation from './OpenConversations/OpenConversations'
 import { useConversations } from '../context/ConversationsProvider'
+import SidebarModal from './SidebarModal'
 
 export default function Dashboard({id}) {
     const { selectedConversation } = useConversations()
@@ -15,20 +16,12 @@ export default function Dashboard({id}) {
         window.addEventListener('resize', handleResize)
     }, [screenWidth])
 
-    {if (screenWidth >= 750) {
-        return (
+    return (
         <div className='d-flex' style={{ height: '100vh'}}>
-            <Sidebar id={id} />
-            {selectedConversation && <OpenConversation />}
+            {screenWidth >= 750 ? <Sidebar id={id} /> : null}
+            {selectedConversation ? <OpenConversation/> :
+                screenWidth <= 750 ? <SidebarModal/> : null
+            }
         </div>
     )
-    } else {
-        return (
-            <div className='d-flex' style={{ height: '100vh'}}>
-            {selectedConversation && <OpenConversation/>}
-            </div>
-        )
-    }}
-
-    
 }

@@ -14,6 +14,7 @@ export default function Conversations() {
           onClick={() => selectConversationIndex(index)}
           active={conversation.selected}
           className={`border-bottom border-secondary ${conversation.selected ? 'bg-grey-light' : ''}`}
+          style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}
         >
           {conversation.recipients.map(r => r.name).join(', ')}
         </ListGroup.Item>

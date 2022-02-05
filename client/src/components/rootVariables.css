@@ -16,6 +16,9 @@
     border-radius: 1rem;
     border: 2px solid #E1E2E1;
 }
+ .btn {
+     outline: none !important;
+ }
 
 ::-webkit-scrollbar-thumb:hover {background-color: #aaa;}
 

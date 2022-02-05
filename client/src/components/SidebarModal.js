@@ -14,14 +14,12 @@ export default function SidebarModal() {
     const [modalOpen, setModalOpen] = useState()
     const conversationOpen = activeKey === CONVERSATIONS
     
-    console.log('This is a message from the sidebar modal')
-
     function closeModal() {
         setModalOpen(false)
     }
 
     return (
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column' style={{width: '100%', height: '80vh'}}>
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant='tabs' className='d-flex justify-content-center' style={{height: '3rem'}}>
                     <Nav.Item>
