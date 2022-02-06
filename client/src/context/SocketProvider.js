@@ -12,7 +12,7 @@ export function SocketProvider({ id, children }) {
 
     useEffect(() => {
         const newSocket = io(
-            'http://localhost:5000',
+            'https://hiquepuff-chat-app.herokuapp.com/',
             { query: { id } }
         )
         setSocket(newSocket)
