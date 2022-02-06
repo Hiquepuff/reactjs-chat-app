@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
@@ -7,12 +8,12 @@ const io = require('socket.io')(server, {
         methods: ['GET', 'POST']
     }
 })
+const PORT  = process.env.PORT || 5000
 
-server.listen(5000, console.log('The server is up and running at http://localhost:5000'))
-
-app.get('/', (req, res) => {
-    res.send('The server is up and running!')
-})
+const cors = require('cors')
+const router = require('./router')
+app.use(cors())
+app.use(router)
 
 io.on('connection', socket => {
     const id = socket.handshake.query.id
@@ -29,3 +30,5 @@ io.on('connection', socket => {
         })
     })
 })
+
+server.listen(PORT, () => console.log('The server is up and running!'))
