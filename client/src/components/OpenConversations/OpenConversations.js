@@ -53,7 +53,7 @@ export default function OpenConversation() {
                     <FontAwesomeIcon icon={faArrowLeft}/>
                 </button>
                 
-                <div className='top-chat-bar' style={{whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: '10px'}}>
+                <div className='top-chat-bar' style={{whiteSpace: 'nowrap', overflow: 'hidden'}}>
                     {selectedConversation.recipients.map(r => r.name).join(', ')}
                 </div>
 

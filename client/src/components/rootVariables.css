@@ -20,6 +20,12 @@
      outline: none !important;
  }
 
+.modal-content {
+     width: clamp(1rem, 90vw, 30rem) !important;
+     margin-left: auto !important;
+     margin-right: auto !important;
+ }
+
 ::-webkit-scrollbar-thumb:hover {background-color: #aaa;}
 
 :root {

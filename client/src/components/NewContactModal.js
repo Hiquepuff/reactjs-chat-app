@@ -9,7 +9,7 @@ export default function NewContactModal({closeModal}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        createContact(idRef.current.value, nameRef.current.value)
+        createContact(idRef.current.value.trim(), nameRef.current.value)
         closeModal()
     }
 
@@ -23,12 +23,12 @@ export default function NewContactModal({closeModal}) {
                         <Form.Label>Id</Form.Label>
                         <Form.Control type='text' ref={idRef} required />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className='mt-4'>
                         <Form.Label>Name</Form.Label>
                         <Form.Control type='text' ref={nameRef} required />
                     </Form.Group>
                     
-                    <Button className="btn btn-primary"type='submit'>Create</Button>
+                    <Button className="btn btn-secondary mt-4" type='submit'>Create</Button>
                 </Form>
             </Modal.Body>
         </>

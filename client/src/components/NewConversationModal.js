@@ -7,11 +7,12 @@ export default function NewConversationModal({closeModal}) {
   const {contacts} = useContacts()
   const [selectedContactIds, setSelectedContactId ] = useState([])
   const {createConversation} = useConversations()
+  const [ conversationName, setConversationName] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (selectedContactIds.length > 0) createConversation(selectedContactIds)
-    else (alert('Add a contact before create a conversation'))
+    if (selectedContactIds.length > 0) createConversation(selectedContactIds, conversationName)
+    else (alert('Add a contact before creating a conversation'))
     
     closeModal()
   }
@@ -34,6 +35,13 @@ export default function NewConversationModal({closeModal}) {
 
       <Modal.Body>
           <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Control required
+               value={conversationName}
+               onChange={e => setConversationName(e.target.value)}
+               placeholder='Conversation Name' className='mb-4'>
+            </Form.Control>
+            </Form.Group>
             {contacts.map(cont => (
               <Form.Group controlId={cont.id} key={cont.id}>
                 <Form.Check

@@ -16,8 +16,35 @@ export function ContactsProvider({ children }) {
     })
   }
 
+  function removeContact(id) {
+    const newContacts = []
+    setContacts(prevContacts => {
+      prevContacts.forEach(contact => {
+        if (contact.id !== id &&
+          contact.id !== newContacts[newContacts.length - 1]) {
+          newContacts.push(contact)
+        }
+      })
+      return newContacts
+    })
+  }
+
+  function changeName(id, newName) {
+    if (newName) {
+      setContacts(prevContacts => {
+        return (prevContacts.map(contact => {
+          if (contact.id === id) {
+            contact.name = newName
+          }
+          return contact
+        }))
+      })
+    }
+    
+  }
+
   return (
-      <ContactsContext.Provider value={{ contacts, createContact }}>
+      <ContactsContext.Provider value={{ contacts, createContact, removeContact, changeName }}>
         {children}
       </ContactsContext.Provider>
   )

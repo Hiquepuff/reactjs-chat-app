@@ -19,7 +19,7 @@ export default function SidebarModal() {
     }
 
     return (
-        <div className='d-flex flex-column' style={{width: '100%', height: '80vh'}}>
+        <div className='d-flex flex-column w-100' >
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant='tabs' className='d-flex justify-content-center' style={{height: '3rem'}}>
                     <Nav.Item>
