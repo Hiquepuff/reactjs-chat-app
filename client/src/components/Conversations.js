@@ -16,7 +16,7 @@ export default function Conversations() {
           className={`border-bottom border-secondary ${conversation.selected ? 'bg-grey-light' : ''}`}
           style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}
         >
-          {conversation.recipients.map(r => r.name).join(', ')}
+          {conversation.name}
         </ListGroup.Item>
       ))}
     </ListGroup>

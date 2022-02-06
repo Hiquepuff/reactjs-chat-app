@@ -17,10 +17,10 @@ export default function OpenConversation() {
 
     function handleSubmit(e) {
         if (e) e.preventDefault()
-
         // Send message if there is at least one character
         if (text.match(/^\s*\S+/)) {
             sendMessage(
+                selectedConversation.name,
                 selectedConversation.recipients.map(r => r.id),
                 text.trim()
             )
@@ -54,7 +54,7 @@ export default function OpenConversation() {
                 </button>
                 
                 <div className='top-chat-bar' style={{whiteSpace: 'nowrap', overflow: 'hidden'}}>
-                    {selectedConversation.recipients.map(r => r.name).join(', ')}
+                    {selectedConversation.name}
                 </div>
 
                 <div>

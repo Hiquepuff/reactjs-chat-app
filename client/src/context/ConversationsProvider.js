@@ -15,19 +15,19 @@ export function ConversationsProvider({id, children }) {
   const [ selectedConversationIndex, setSelectedConversationIndex] = useState(0)
   const socket = useSocket()
 
-  function createConversation(recipients) {
+  function createConversation(recipients, name) {
     setConversations(prevConversations => {
-      return [...prevConversations, { recipients, messages: [] }]
+      return [...prevConversations, { name, recipients, messages: [] }]
     })
   }
 
-  const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
+  const addMessageToConversation = useCallback(({ name, recipients, text, sender }) => {
     setConversations( prevConversations => {
       let madeChange = false 
       let newMessage = { sender, text }
       
       const newConversations = prevConversations.map(conversation => {
-        if (arrayEquality(conversation.recipients, recipients)) {
+        if (arrayEquality(conversation.recipients, recipients) && conversation.name === name) {
           madeChange = true
           return {
             ...conversation,
@@ -42,7 +42,7 @@ export function ConversationsProvider({id, children }) {
       } else {
         return [
           ...prevConversations,
-          { recipients, messages: [newMessage]}
+          { name, recipients, messages: [newMessage]}
         ]
       }
     })
@@ -56,13 +56,15 @@ export function ConversationsProvider({id, children }) {
     return () => socket.off('receive-message')
   }, [socket, addMessageToConversation])
 
-  function sendMessage(recipients, text) {
-    socket.emit('send-message', {recipients, text})
+  function sendMessage(name, recipients, text) {
+    socket.emit('send-message', {name, recipients, text})
 
-    addMessageToConversation({ recipients, text, sender: id })
+    addMessageToConversation({ name, recipients, text, sender: id })
   }
 
   const formattedConversations = conversations.map((conversation, index) => {
+      const conversationName = conversation.name
+
       const recipients = conversation.recipients.map(recipient => {
           const contact = contacts.find(contact => {
               return contact.id === recipient
@@ -82,7 +84,7 @@ export function ConversationsProvider({id, children }) {
 
       const selected = index === selectedConversationIndex
 
-      return { ...conversations, messages, recipients, selected }
+      return { ...conversations, name: conversationName, messages, recipients, selected }
   })
 
   const value = {
