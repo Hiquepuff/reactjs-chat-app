@@ -1,6 +1,8 @@
-## Chat App
+## [Chat App](https://hiquepuff-chat-app.netlify.app/)
 
 This is a simple Chat App built with Socket.io and ReactJS
+
+Click [right here](https://hiquepuff-chat-app.netlify.app/) to see the app running on the internet.
 
 ### How to run it locally:
 1. Make sure you have [NodeJS](https://nodejs.org/en/download/) installed
