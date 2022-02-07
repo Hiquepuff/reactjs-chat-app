@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane, faUserPlus, faEllipsisV, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faEllipsisV, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Form, InputGroup, Button, Modal } from 'react-bootstrap'
 import { useConversations } from '../../context/ConversationsProvider'
 import SidebarModal from '../SidebarModal'
@@ -58,9 +58,6 @@ export default function OpenConversation() {
                 </div>
 
                 <div>
-                <button className='border-0 bg-grey-primary' style={{'marginRight': '1rem'}}>
-                    <FontAwesomeIcon icon={faUserPlus} className='text-white'/>
-                </button>
                 <button className='border-0 bg-grey-primary' style={{'marginRight': '.5rem'}}>
                     <FontAwesomeIcon icon={faEllipsisV} className='text-white'/>
                 </button>
@@ -94,7 +91,7 @@ export default function OpenConversation() {
                 </div>
             </div>
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className='message-form'>
                 <Form.Group className='m-2'>
                     <InputGroup>
                         <Form.Control  

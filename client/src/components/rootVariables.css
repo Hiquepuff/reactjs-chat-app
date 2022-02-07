@@ -55,3 +55,9 @@
 .bg-grey-dark {
     background-color: var(--grey-dark) !important;
 }
+
+@media (max-width: 480px) {
+    html, body {
+        overflow-y: hidden !important;
+    }
+}

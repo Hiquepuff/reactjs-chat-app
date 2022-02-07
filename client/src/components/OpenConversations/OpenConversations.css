@@ -18,6 +18,12 @@
     .arrow {display: block !important;}
 }
 
+@media(max-width: 480px) {
+    .message-form {
+        margin-bottom: 4rem !important;
+    }
+}
+
 .top-chat-bar {
     white-space: nowrap;
     overflow: hidden;
