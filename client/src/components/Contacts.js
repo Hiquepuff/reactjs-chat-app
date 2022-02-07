@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ListGroup, Modal } from 'react-bootstrap';
-import {useContacts} from '../context/ContactsProvider'
+import { useContacts } from '../contexts/ContactsProvider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import ContactSettingsModal from './Modals/ContactSettingsModal'

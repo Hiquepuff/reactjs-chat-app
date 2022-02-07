@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar'
 import OpenConversation from './OpenConversations/OpenConversations'
-import { useConversations } from '../context/ConversationsProvider'
+import { useConversations } from '../contexts/ConversationsProvider'
 import SidebarModal from './Modals/SidebarModal'
 
 export default function Dashboard({id}) {

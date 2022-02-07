@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faEllipsisV, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Form, InputGroup, Button, Modal } from 'react-bootstrap'
-import { useConversations } from '../../context/ConversationsProvider'
+import { useConversations } from '../../contexts/ConversationsProvider'
 import SidebarModal from '../Modals/SidebarModal'
 import '../../General.css'
 
