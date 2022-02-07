@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Modal, Form } from 'react-bootstrap'
-import {useContacts} from '../context/ContactsProvider'
+import { useContacts } from '../../contexts/ContactsProvider'
 
 export default function ContactSettings({selectedContactId, closeModal}) {
   const [newName, setNewName] = useState('')

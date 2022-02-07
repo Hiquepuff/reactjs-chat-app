@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar'
 import OpenConversation from './OpenConversations/OpenConversations'
 import { useConversations } from '../context/ConversationsProvider'
-import SidebarModal from './SidebarModal'
+import SidebarModal from './Modals/SidebarModal'
 
 export default function Dashboard({id}) {
     const { selectedConversation } = useConversations()

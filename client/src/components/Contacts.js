@@ -3,7 +3,7 @@ import { ListGroup, Modal } from 'react-bootstrap';
 import {useContacts} from '../context/ContactsProvider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
-import ContactSettingsModal from './ContactSettingsModal'
+import ContactSettingsModal from './Modals/ContactSettingsModal'
 
 export default function Contacts() {
   const {contacts} = useContacts()

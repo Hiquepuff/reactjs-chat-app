@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faEllipsisV, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Form, InputGroup, Button, Modal } from 'react-bootstrap'
 import { useConversations } from '../../context/ConversationsProvider'
-import SidebarModal from '../SidebarModal'
-import '../rootVariables.css'
-import './OpenConversations.css'
+import SidebarModal from '../Modals/SidebarModal'
+import '../../General.css'
 
 export default function OpenConversation() {
     const [ modalOpen, setModalOpen] = useState()
