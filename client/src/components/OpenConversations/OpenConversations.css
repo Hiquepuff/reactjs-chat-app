@@ -18,9 +18,9 @@
     .arrow {display: block !important;}
 }
 
-@media(max-width: 480px) {
+@media (max-width: 480px) {
     .message-form {
-        margin-bottom: 4rem !important;
+        margin-bottom: 3.8rem !important;
     }
 }
 

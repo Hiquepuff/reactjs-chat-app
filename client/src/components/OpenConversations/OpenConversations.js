@@ -4,15 +4,23 @@ import { faPaperPlane, faEllipsisV, faArrowLeft } from '@fortawesome/free-solid-
 import { Form, InputGroup, Button, Modal } from 'react-bootstrap'
 import { useConversations } from '../../contexts/ConversationsProvider'
 import SidebarModal from '../Modals/SidebarModal'
+import SeeUsersModal from '../Modals/SeeUsersModal'
+import './OpenConversations.css'
 import '../../General.css'
 
-export default function OpenConversation() {
-    const [ modalOpen, setModalOpen] = useState()
+export default function OpenConversation({screenWidth}) {
+    const [ modalOpen, setModalOpen] = useState() // For the sidebar modal
+    const [ seeUsersOpen, setSeeUsersOpen ] = useState() // For seeing the users
     const [text, setText] = useState('')
     const setRef = useCallback(node => {
-        if (node) node.scrollIntoView({smooth: true})
+        if (node) node.scrollIntoView(false)
     }, [])
     const { sendMessage, selectedConversation } = useConversations()
+
+    if (screenWidth <= 480) {
+        document.querySelector('body').style.overflowY = 'hidden'
+        document.querySelector('html').style.overflowY = 'hidden'
+    }
 
     function handleSubmit(e) {
         if (e) e.preventDefault()
@@ -25,6 +33,7 @@ export default function OpenConversation() {
             )
         }
         setText('')
+        document.querySelector('.message-input').focus()
     }
 
     function closeModal() { setModalOpen(false) }
@@ -41,7 +50,7 @@ export default function OpenConversation() {
 
     return (
         <>
-        <div className="bg-less-light d-flex flex-column flex-grow-1 ">
+        <div className="conversation-container bg-less-light d-flex flex-column flex-grow-1 ">
             <div  style={{height: '3rem'}} className="bg-grey-primary mt-0 w-100 text-white p-3 d-flex align-items-center justify-content-between">
                 
                 <button 
@@ -57,7 +66,11 @@ export default function OpenConversation() {
                 </div>
 
                 <div>
-                <button className='border-0 bg-grey-primary' style={{'marginRight': '.5rem'}}>
+                <button 
+                className='border-0 bg-grey-primary' 
+                style={{'marginRight': '.5rem'}}
+                onClick={() => setSeeUsersOpen(true)}
+                >
                     <FontAwesomeIcon icon={faEllipsisV} className='text-white'/>
                 </button>
                 </div>
@@ -99,6 +112,7 @@ export default function OpenConversation() {
                             as='textarea'
                             value={text}
                             style={{height: '3rem', resize: 'none'}}
+                            className='message-input'
                         />
                         <Button style={{'border': 'none', 'backgroundColor': '#4f5b62'}} type='submit' id='send-btn'>
                             <FontAwesomeIcon icon={faPaperPlane} />
@@ -112,7 +126,14 @@ export default function OpenConversation() {
         
         <Modal className='sidebar-modal' style={{position: 'fixed', top: '3rem'}} show={modalOpen} onHide={closeModal}>
             <SidebarModal closeModal={closeModal}/>
-        </Modal>  
+        </Modal>
+
+        <Modal show={seeUsersOpen} onHide={() => setSeeUsersOpen(false)}>
+            <SeeUsersModal 
+            closeModal={() => setSeeUsersOpen(false)}
+            users={selectedConversation.recipients}
+             />
+        </Modal>
         </>
     )
 }

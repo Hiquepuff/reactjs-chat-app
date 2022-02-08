@@ -16,8 +16,11 @@ export default function Login({ onIdSubmit }) {
 
     return (
         <Container className='align-items-center d-flex' style={{ height: '100vh'}}>
-            <Form onSubmit={handleSubmit} className='w-100'>
-                <Form.Group style={{'marginBottom': '.5rem'}}>
+            <Form onSubmit={handleSubmit} 
+            className='p-4 rounded mx-auto shadow'
+            style={{ width: '25rem'}}
+            >
+                <Form.Group style={{'marginBottom': '.5rem'}}  className='mb-3'>
                     <Form.Label>Enter Your Id</Form.Label>
                     <Form.Control type='text' ref={idRef} required/>
                 </Form.Group>

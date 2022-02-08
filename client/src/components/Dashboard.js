@@ -19,7 +19,7 @@ export default function Dashboard({id}) {
     return (
         <div className='d-flex' style={{ height: '100vh'}}>
             {screenWidth >= 750 ? <Sidebar id={id} /> : null}
-            {selectedConversation ? <OpenConversation/> :
+            {selectedConversation ? <OpenConversation screenWidth={screenWidth}/> :
                 screenWidth <= 750 ? <SidebarModal/> : null
             }
         </div>

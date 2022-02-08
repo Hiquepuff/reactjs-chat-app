@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Modal, Form } from 'react-bootstrap'
+import { Modal, Form, Button } from 'react-bootstrap'
 import { useContacts } from '../../contexts/ContactsProvider'
 
 export default function ContactSettings({selectedContactId, closeModal}) {
   const [newName, setNewName] = useState('')
   const {removeContact, changeName} = useContacts()
+  const [ openWarning, setOpenWarning ] = useState()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -35,17 +36,33 @@ export default function ContactSettings({selectedContactId, closeModal}) {
           </Form>
             
 
-            <button
-            className="btn btn-secondary mt-5"
-            onClick={() => {
-              const answer = prompt('You are about to delete this contact\nAre you sure?')
-              if (answer.match(/y|yes/ig)) {
-                removeContact(selectedContactId)
-                closeModal()
-              }
-              }}
+            <button className="btn btn-secondary mt-5"
             >Remove Contact</button>
     </Modal.Body>
+
+
+    {/* Warning for deleting contact */}
+    <Modal show={openWarning} hide={closeModal}>
+      <Modal.Header closeButton>
+        <h4 className='text-warning m-auto' >Deleting contact</h4>
+      </Modal.Header>
+      <Modal.Body className='p-5 text-center'>
+        <p>Contact ID: {selectedContactId}</p>
+        Are you sure you wanna delete this contact?
+
+        <div className="d-flex justify-content-center m-3">
+            <Button
+            variant='secondary' 
+            style={{marginRight: '3rem'}}
+            onClick={() => {
+              removeContact(selectedContactId)
+              closeModal()
+            }}
+            >Yes</Button>
+            <Button onClick={() => closeModal()}>NO</Button>
+        </div>
+      </Modal.Body>
+    </Modal>
 
     </>
   )
